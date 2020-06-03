@@ -36,7 +36,7 @@ const CreatePoint = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    Whatsapp: ''
+    whatsapp: ''
   });
   const [selectedItem, setSelectedItem] = useState<number[]>([]);
 
@@ -113,10 +113,10 @@ const CreatePoint = () => {
     }
   }
 
-  function handleSubmit(event: FormEvent){
+  async function handleSubmit(event: FormEvent){
     event.preventDefault();
     
-    const {name, email, Whatsapp} = formData;
+    const {name, email, whatsapp} = formData;
     const uf = selectedUF;
     const city = selectedCity;
     const [latitude, longitude] = selectedPosition;
@@ -125,7 +125,7 @@ const CreatePoint = () => {
     const data = {
       name,
       email,
-      Whatsapp,
+      whatsapp,
       uf,
       city,
       latitude,
@@ -133,7 +133,7 @@ const CreatePoint = () => {
       items,
     }
 
-    api.post('points', data);
+    await api.post('points', data);
 
     alert('Ponto de coleta criado com sucesso.');
 
